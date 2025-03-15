@@ -1,7 +1,9 @@
 package com.example.google_places.Services;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+
 import com.example.google_places.Entity.Place;
 import com.example.google_places.Repository.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ public class PlaceService {
 
     @Autowired
     private PlaceRepository placeRepository;
-    // Method implemented here
+    @Cacheable(value = "placesCache", key = "#longitude + '-' + #latitude + '-' + #radius")
     public Object findPlaces(double longitude, double latitude, int radius) {
         // Check if current search exist in database
         Optional<Place> optionalPlace =
