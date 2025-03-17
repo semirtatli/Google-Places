@@ -4,7 +4,8 @@
 * Configure application.properties
 * Configure pom.xml
 
-For caching I used **Redis** I run it on Docker
+For caching I used **Redis** I run it on Docker 
+
 From the terminal run command:
 * `docker run --name redis -p 6379:6379 -d redis`
 
@@ -14,7 +15,7 @@ The response should be "PONG"
 
 * Run the project
 
-##API ENDPOINTS
+## API ENDPOINTS
 ---
 ### REQUESTS
 **Request**
