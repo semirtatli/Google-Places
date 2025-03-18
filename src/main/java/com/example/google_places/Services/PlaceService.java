@@ -39,20 +39,23 @@ public class PlaceService {
         // If no record exists, create a new dummy response for now for testing
 //        String response = "Google Places API ("
 //                + latitude + ", " + longitude + ", " + radius;
+try {
+    RestTemplate restTemplate = new RestTemplate();
 
-        RestTemplate restTemplate = new RestTemplate();
+    String response = restTemplate.getForObject(googleApiUrl, String.class);
 
-        String response = restTemplate.getForObject(googleApiUrl, String.class);
+    // Create a new item and save from repository if not exists in database
+    Place newPlace = new Place();
+    newPlace.setLongitude(longitude);
+    newPlace.setLatitude(latitude);
+    newPlace.setRadius(radius);
+    newPlace.setResponse(response);
 
-        // Create a new item and save from repository if not exists in database
-        Place newPlace = new Place();
-        newPlace.setLongitude(longitude);
-        newPlace.setLatitude(latitude);
-        newPlace.setRadius(radius);
-        newPlace.setResponse(response);
+    placeRepository.save(newPlace);
 
-        placeRepository.save(newPlace);
-
-        return response;
+    return response;
+} catch (Exception e) {
+    return "An error occurred. Please try again.";
+}
     }
 }
