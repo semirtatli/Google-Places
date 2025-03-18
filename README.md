@@ -1,19 +1,19 @@
 ## Setup Project
 
-* Create your Database
+
 * Configure application.properties
+* Configure .env files
 * Configure pom.xml
 
-For caching I used **Redis** I run it on Docker 
+Build & Run docker
+
+
 
 From the terminal run command:
-* `docker run --name redis -p 6379:6379 -d redis`
 
-Test if Redis works
-`docker exec -it redis redis-cli ping`
-The response should be "PONG"
+* `docker-compose up --build`
 
-* Run the project
+
 
 ## API ENDPOINTS
 ---
